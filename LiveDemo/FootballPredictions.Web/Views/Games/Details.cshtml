@@ -1,0 +1,15 @@
+﻿@model FootballPredictions.Web.Models.GameDetailsViewModel
+@{
+    ViewBag.Title = string.Format("{0} - {1}",
+        Model.HomeTeam,
+        Model.AwayTeam);
+}
+
+<h2>@ViewBag.Title</h2>
+
+<ul>
+    @foreach (var prediction in Model.Predictions)
+    {
+        <li>@prediction.Username: @prediction.Result</li>
+    }
+</ul>

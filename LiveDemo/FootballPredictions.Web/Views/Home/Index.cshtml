@@ -1,0 +1,27 @@
+﻿@model IEnumerable<FootballPredictions.Web.Models.HomeGameDetailsViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Football Predictions</h1>
+</div>
+@ViewBag.Name
+<table class="table">
+    <tr>
+        <th>Game</th>
+        <th>Predictions count</th>
+    </tr>
+    @foreach (var game in Model)
+    {
+        <tr>
+            <td>
+                <a href="/Games/Details/@game.Id">
+                    @game.HomeTeam - @game.AwayTeam
+                </a>
+            </td>
+            <td>@game.PredictionsCount</td>
+        </tr>
+    }
+</table>
+@@

@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity
+@model FootballBookmaker.Web.Models.DetailedGameInfoViewModel
+@{
+    ViewBag.Title = string.Format("{0} - {1}", Model.HomeTeam, Model.AwayTeam);
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>Predictions</h3>
+<ul id="predictions">
+    @foreach (var prediction in Model.Predictions)
+    {
+        <li>@prediction.Username: @prediction.ResultAsString</li>
+    }
+</ul>
+@if (Request.IsAuthenticated)
+{
+    using (Ajax.BeginForm("CreatePrediction", null, new { id = Model.Id }, new AjaxOptions
+    {
+        HttpMethod = "Post",
+        InsertionMode = InsertionMode.InsertAfter,
+        UpdateTargetId = "predictions"
+    }))
+    {
+        Html.RenderPartial("_CreatePrediction", new FootballBookmaker.Web.Models.PredictionInfoViewModel());
+        <input type="submit" class="btn btn-sm"/>
+    }
+}

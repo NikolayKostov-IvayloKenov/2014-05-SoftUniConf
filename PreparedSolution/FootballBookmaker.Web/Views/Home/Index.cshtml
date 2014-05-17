@@ -1,0 +1,22 @@
+﻿@model FootballBookmaker.Web.Models.HomePageViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Football predictions</h1>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Game</th>
+        <th>Predictions</th>
+    </tr>
+    @foreach (var game in Model.Games)
+    {
+        <tr>
+            <td><a href="/Games/Show/@game.Id">@game.HomeTeam - @game.AwayTeam</a></td>
+            <td>@game.PredictionsCount</td>
+        </tr>
+    }
+</table>
